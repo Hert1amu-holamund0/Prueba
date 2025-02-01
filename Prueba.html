@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="es"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Sistema de Votación con Burbujas&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Arial', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #f9fafb;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>h1 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.category-container {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 20px 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.category {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: all 0.2s ease;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.bubble-container {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.bubble {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #f472b6;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: all 0.2s ease;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.bubble.selected {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #16a34a;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: scale(1.2);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.add-bubble {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #eab308;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: all 0.2s ease;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.add-bubble:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #d97706;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.category:hover, .bubble:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: scale(1.1);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Sistema de Votación con Burbujas&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="categories-container"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="bubble-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="add-bubble" onclick="addNewResponse()"&gt;+ Añadir Respuesta&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Array para guardar las categorías y sus respuestas</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let categories = [];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Función para pedir las categorías y sus respuestas</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function createCategories() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let numCategories = prompt("¿Cuántas categorías deseas crear?");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (numCategories &amp;&amp; !isNaN(numCategories)) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>numCategories = parseInt(numCategories);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>for (let i = 0; i &lt; numCategories; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>let categoryName = prompt(`Ingresa el nombre de la categoría ${i + 1}:`);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>let categoryColor = getRandomColor(); // Color aleatorio para la categoría</p>
+<p class="p1"><span class="Apple-converted-space">          </span>let numResponses = prompt(`¿Cuántas respuestas quieres para la categoría "${categoryName}"?`);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>numResponses = parseInt(numResponses);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>let responses = [];</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>for (let j = 0; j &lt; numResponses; j++) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let response = prompt(`Ingresa la respuesta ${j + 1} para la categoría "${categoryName}":`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>responses.push(response);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>categories.push({</p>
+<p class="p1"><span class="Apple-converted-space">            </span>name: categoryName,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: categoryColor,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>responses: responses</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderCategories();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>alert("Por favor ingresa un número válido.");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Función para renderizar las categorías y respuestas</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function renderCategories() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const container = document.getElementById('categories-container');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>container.innerHTML = ''; // Limpiar contenido previo</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>categories.forEach((category, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const categoryElement = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>categoryElement.classList.add('category');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>categoryElement.style.backgroundColor = category.color;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>categoryElement.textContent = `Categoría: ${category.name}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>categoryElement.ondblclick = function() { increaseCategorySize(categoryElement); };</p>
+<p class="p1"><span class="Apple-converted-space">        </span>container.appendChild(categoryElement);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bubbleContainer = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>bubbleContainer.classList.add('bubble-container');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>category.responses.forEach(response =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const bubble = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>bubble.classList.add('bubble');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>bubble.textContent = response;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>bubble.onclick = function() { toggleVote(bubble); };</p>
+<p class="p1"><span class="Apple-converted-space">          </span>bubbleContainer.appendChild(bubble);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>container.appendChild(bubbleContainer);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Función para alternar la selección de las burbujas (voto)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function toggleVote(bubble) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>bubble.classList.toggle('selected');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Función para aumentar el tamaño de la categoría al hacer doble clic</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function increaseCategorySize(categoryElement) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const currentSize = parseInt(window.getComputedStyle(categoryElement).fontSize);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>categoryElement.style.fontSize = `${currentSize + 3}px`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Función para añadir una nueva respuesta personalizada en cualquier categoría</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function addNewResponse() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const newResponse = prompt("Ingresa tu nueva respuesta:");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (newResponse) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const categoryIndex = prompt(`¿A qué categoría deseas añadir la respuesta?\n(Ingresa un número del 1 al ${categories.length})`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const category = categories[categoryIndex - 1];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (category) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>category.responses.push(newResponse);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>renderCategories();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>alert("Categoría no válida.");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Función para generar un color aleatorio para cada categoría</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function getRandomColor() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const letters = '0123456789ABCDEF';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let color = '#';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; 6; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>color += letters[Math.floor(Math.random() * 16)];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return color;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Iniciar el proceso de creación de categorías al cargar la página</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.onload = createCategories;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
